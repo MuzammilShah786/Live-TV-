@@ -1,0 +1,1706 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wasi TV - Video Player</title>
+  <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
+  <script type='text/javascript' src="https://cdn.jsdelivr.net/npm/afterglowplayer@1/dist/afterglow.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+</script>
+</head>
+
+
+<STYLE>
+.buttoncontrols1 { display: inline-block; padding: 6px 7px; font-size: 12px; background: none; } .button5 { border-radius: 4px; box-shadow: 0 4px 4px 0 rgba(0,0,0,0.2), 0 4px 4px 0 rgba(0,0,0,0.19); background-color: none; color: white; border: 3px solid red; }
+
+ .buttoncotrols1:hover { background-color: none; font-size: 5px; } button:active { background-color: none; box-shadow: #666; transform: translateY(2px); } button { background-color: none; /* Green */ border: none; color: none; padding: 3px 3px; text-align: center; text-decoration: none; display: inline-block; font-size: 10px; margin: 4px; 4px; cursor: pointer; } </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <STYLE>
+    .button{
+        border-radius: 10% ;border-color:#FF0577A;  padding: 5px; margin: -12px; height: 140px; width: 108px;
+    }
+  
+    
+ 
+
+
+
+
+
+
+  
+ 
+  background-size: 100%  100%";
+  margin: 5Px;
+color: #fff;
+
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+
+  
+  
+   
+
+
+.button2 {
+    width: 80%;
+  font-size: 20px;
+    background-color: #B60000; 
+    color: white; 
+    border: 0px solid #222;
+  border-radius: 5Px;
+}
+
+
+
+    
+
+
+
+
+.zoom {
+
+  padding: 5px;
+  transition: transform .2s;
+  width: 100px;
+  height: 130px;
+  margin: 0 auto;
+  
+}
+
+
+
+          
+   
+.buttoncontrols1 {
+  display: inline-block;
+  padding: 5px 7px;
+  font-size: 10px;
+  
+}
+
+
+
+    
+    
+    
+
+
+
+
+
+
+
+
+.container {
+  width:100%;
+  margin:0 auto;
+}
+input[type="radio"] {
+    display:none;
+}
+label {
+ 
+  float:left;
+  text-align:center;
+  background:#ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  color:#222222;
+  padding:0.5%;
+  margin:0.5%;
+  margin-bottom:30px;
+  cursor:pointer;
+}
+
+
+
+
+
+.filterDiv {
+  
+  
+
+  text-align: center;
+  margin: 2px;
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.container {
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+
+
+
+
+
+
+
+.myButton {
+    -moz-box-shadow: 0px 1px 0px 0px #fff6af;
+    -webkit-box-shadow: 0px 1px 0px 0px #fff6af;
+    box-shadow: 0px 1px 0px 0px #fff6af;
+    
+   
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+  background: url('https://i.pinimg.com/originals/2b/78/42/2b784258f359a45dec38e63b82059c10.jpg');
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
+    background: url('https://i.pinimg.com/originals/2b/78/42/2b784258f359a45dec38e63b82059c10.jpg');
+    display:inline-block;
+    cursor:pointer;
+    color:#FDFDFE;
+    font-family:Arial;
+    font-size:13px;
+    font-weight:bold;
+    Margin: 1Px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #FDFDFE;
+}
+
+
+
+
+
+
+
+
+
+
+  .myButton:hover {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #070D0D), color-stop(1, #AD0AFD)); 
+    
+    
+    
+    background-color:#F70D1A;
+}
+.myButton:active {
+    position:relative;
+    top:1px;
+}
+
+        
+
+
+    
+
+
+
+
+
+
+
+
+</style>
+
+
+
+<div align="center" id="playlist">
+
+
+
+
+  <script>
+  $(function(){
+$("#playlist a").on("click", function() {
+var player = videojs('my-video');
+player.pause();
+var new_url = $(this).attr("data-url");
+player.src(new_url);
+// set src track corresponding to new movie //
+player.load();
+player.play();
+});
+});</script>
+
+
+
+
+
+
+
+
+
+
+      
+      
+
+
+
+
+
+
+      <h1 style="text-align: center; padding-top: 70%;"><span style="color: #ff0000;"><span style="color:#FFFFFF;"></span>      
+
+
+<div Width="90%" class="container">
+
+
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/colorstvuk/playlist.m3u8">
+ <img id="imageField" class="Button border"  name="imageField" src="https://mhdtvworld.xyz/wp-content/uploads/2020/11/colors.jpg " alt=" colors tv"></button>  </div>
+
+
+
+
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/colorstv/playlist.m3u8">
+ <img id="imageField" class="Button border"  name="imageField" src="https://i.pinimg.com/236x/3a/9a/a7/3a9aa7a2ffe976c2491d80aa64b0ad6b.jpg " alt=" colors uk"></button>  </div>
+ 
+ 
+ 
+ <div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/colorstvhd/playlist.m3u8">
+ <img id="imageField" class="Button border"  name="imageField" src="https://mhdtvworld.xyz/wp-content/uploads/2020/02/COLORSTVHD.jpg " alt=" colors"> </button>  </div>
+ 
+ 
+ <div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+
+
+
+<a href="go:colorshd1">
+	<button id="1" name="1" value="">
+ <img id="imageField" class="Button border"  name="imageField" src="https://mhdtvworld.xyz/wp-content/uploads/2020/02/COLORSTVHD.jpg " alt=" colors"> </button></a>  </div>
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/rishtayasia/playlist.m3u8">
+ <img id="imageField" class="Button border"  name="imageField" src="https://i.pinimg.com/736x/4d/7b/13/4d7b130355e0f5e2e283e184d357d2c4.jpg " alt=" colors ristey asia"> </button>  </div>
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/rishteyindia/playlist.m3u8">
+ <img id="imageField" class="Button border"  name="imageField" src="https://i.pinimg.com/236x/b8/bc/72/b8bc72985bf0d7d706eb74bd61eea26b.jpg" alt=" colors india"> </button>  </div>
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/rishteyeu/playlist.m3u8">
+ <img id="imageField" class="Button border"  name="imageField" src="https://i.pinimg.com/236x/99/d1/e5/99d1e59d77415ee22da17da010595bad.jpg" alt=" colors uk"> </button>  </div>
+
+
+
+
+
+
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/rishteycineplexuk/playlist.m3u8">
+ <img id="imageField" class="Button border"  name="imageField" src="https://i.pinimg.com/originals/ab/d7/ba/abd7ba2b92c1d303bdfd27368c2caa3f.jpg" alt=" colors cineplex hd"> </button>  </div>
+
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/rishteycineplex/playlist.m3u8">
+ <img id="imageField" class="Button border"  name="imageField" src="https://i.pinimg.com/236x/dd/6f/00/dd6f00c038a569d58bc63939c1270841.jpg" alt=" colors cineplex"> </button>  </div>
+
+
+
+
+
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+ 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/bigmagic/chunks.m3u8">
+ <img id="imageField" class="Button border"  name="imageField" src="https://i.pinimg.com/originals/42/94/a0/4294a0eeab905f07d7f97afeb9028b7d.jpg " alt=" bigmagic"></button>  </div>
+
+
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/dangaaltv/playlist.m3u8">
+ <img id="imageField" class="Button border"  name="imageField" src="https://i.pinimg.com/originals/6e/c3/fc/6ec3fc6e997c81229633efbdc0c4614f.jpg" alt="dangal tv"></button>  </div>
+
+
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+ <a class="channel_box" href="go:d1">
+<button id="1" name="1" value="">
+ <img id="imageField" class="Button border"  name="imageField" src="https://i.pinimg.com/originals/6e/c3/fc/6ec3fc6e997c81229633efbdc0c4614f.jpg " alt=" dangal"></button>  </a></div>
+
+
+
+
+
+
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+ 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/starplus/chunks.m3u8">
+ <img id="imageField" class="Button border"  name="imageField" src="https://i.pinimg.com/236x/61/39/ab/6139abaf5ea500c5e62166a0d969feb3.jpg " alt="star plus"></button>  </a></div>
+
+
+
+
+
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+ 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/starplususa/chunks.m3u8">
+ <img id="imageField" class="Button border"  name="imageField" src="https://i.pinimg.com/236x/61/39/ab/6139abaf5ea500c5e62166a0d969feb3.jpg " alt="star plus"></button></a></div>
+
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+
+<a class="channel_box" href="go:starg">
+<button id="1" name="1" value=" ">
+ <img id="imageField" class="Button border"  name="imageField" src="https://i.pinimg.com/236x/c9/0b/39/c90b390d29b6a8132ec3a21ba9c0b14d.jpg" alt="star plus hd "></button>  </a></div>
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+ 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/starplusuk/chunks.m3u8">
+ <img id="imageField" class="Button border"  name="imageField" src="https://i.pinimg.com/236x/38/fe/5d/38fe5d0305ec5668e7d95f122805f04b.jpg" alt="UTSAV PLUS HD"></button>  </a></div>
+
+
+
+
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+ 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/starutsav/chunks.m3u8">
+ <img id="imageField" class="Button border"  name="imageField" src="https://i.pinimg.com/236x/ec/e5/c2/ece5c246e4b2865f324362f5efe0daeb.jpg" alt=" star utsav"></button>  </div>
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+ 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/starutsavmovies/chunks.m3u8">
+ <img id="imageField" class="Button border"  name="imageField" src="https://i.pinimg.com/236x/95/0b/d7/950bd772652c74b8f26658c917985447.jpg" alt=" star utsav movies"></button>  </div>
+
+   
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+ 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/starbharat/chunks.m3u8">
+ <img id="imageField" class="Button border"  name="imageField" src="https://i.pinimg.com/736x/88/fe/83/88fe836f4771940007ae4360db3f2bbc.jpg" alt=" star bharat"></button>  </div>
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+ 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/starbharatme/chunks.m3u8">
+ <img id="imageField" class="Button border"  name="imageField" src="https://i.pinimg.com/236x/81/ee/7b/81ee7bd2375d0746b5d001e20fbd148a.jpg" alt=" star bharat me"></button>  </div>
+
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+ <a class="channel_box" href="go:sthd">
+<button id="1" name="1" value="">
+ <img id="imageField" class="Button border"  name="imageField" src="https://i.pinimg.com/236x/8c/0c/9a/8c0c9a3eebe310043f84848ab443a892.jpg" alt="star movies hd  "></button> </a>  </div>
+
+    <div style="float: left;" class="filterDiv MOVIE"> 
+ <button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/starmovies/chunks.m3u8">
+
+ <img id="imageField" class="Button border"  name="imageField" src="https://i.pinimg.com/236x/8c/0c/9a/8c0c9a3eebe310043f84848ab443a892.jpg" alt="star movies hd 2"></button>   </div>
+    
+    
+    
+    
+    
+    
+<div style="float: left;" class="filterDiv MOVIE"> 
+ <button id="1" name="1" value="http://n1.mtfxg.xyz:8081/indsafe/stargold/chunks.m3u8">
+
+ <img id="imageField" class="Button border"  name="imageField" src="https://i.pinimg.com/236x/f2/5b/a3/f25ba3eaa69337e896c9fe30ae6428cc.jpg" alt="star gold  "></button>   </div>
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+ <button id="1" name="1" value="http://n1.mtfxg.xyz:8081/indsafe/stargolduk/chunks.m3u8">
+
+ <img id="imageField" class="Button border"  name="imageField" src="https://i.pinimg.com/236x/bf/43/d9/bf43d99453cdd083569e839caf72073f.jpg" alt="star gold  uk"></button>   </div>
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+ <button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/stargold2/chunks.m3u8">
+
+ <img id="imageField" class="Button border"  name="imageField" src="https://i.pinimg.com/236x/b7/e8/12/b7e81295f570871ebd81c6de7a7a2e93.jpg" alt="star gold 2"></button> </div>
+
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+	
+ <button id="1" name="1" value="http://n1.mtfxg.xyz:8081/new/9xtashan/chunks.m3u8">
+
+ <img id="imageField" class="Button border"  name="imageField" src="https://i.pinimg.com/236x/5d/98/3e/5d983eba859f8930b704941715f36cef.jpg" alt="utsav gold hd"></button> </a></div>
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+	
+ <button id="1" name="1" value="">
+<a class="channel_box" href="go:i"> 
+ <img id="imageField" class="Button border"  name="imageField" src="https://i.pinimg.com/236x/28/cc/43/28cc434b6e7395fa6ab1fffc30f37f34.jpg" alt="ISHARA"></button> </a></div>
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+	
+ <button id="1" name="1" value="">
+<a class="channel_box" href="go:az"> 
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://mhdtvworld.xyz/wp-content/uploads/2021/12/azaadtv.webp
+" alt="AZAAD TV "></button> </a></div>
+
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+	
+ <button id="1" name="1" value="">
+<a class="channel_box" href="go:arre"> 
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/bb/9d/f7/bb9df7195b86473965be3be3dec4e45a.jpg
+" alt=" arre"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+	
+ <button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/sonytv/chunks.m3u8">
+
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/16/da/8f/16da8f476506ef1034d2ac5af9c98ce6.jpg
+" alt="sony tv"></button> </a></div>
+
+
+
+
+
+
+
+
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/sonytvhd/chunks.m3u8">
+
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/c4/5d/5f/c45d5fab0a13033743ee61bfc3c46708.jpg
+" alt="sony tv hd"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+	
+ <button id="1" name="1" value="">
+<a class="channel_box" href="go:sonyhd"> 
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/c4/5d/5f/c45d5fab0a13033743ee61bfc3c46708.jpg
+" alt=" sony tv hd 2"></button> </a></div>
+
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/sonysabtv/chunks.m3u8">
+
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/c6/6a/bc/c66abcf115253e4722e983c1d479ec44.jpg
+" alt="sony sab"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/sonysabhd/chunks.m3u8">
+
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/ba/10/27/ba10273bc54db68c620a3eeeb57256f8.jpg
+" alt="sony sab hd"></button> </a></div>
+
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="">
+<a class="channel_box" href="go:sonysabhd"> 
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/ba/10/27/ba10273bc54db68c620a3eeeb57256f8.jpg
+" alt="sony sab hd"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/sonypal/chunks.m3u8">
+
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://mhdtvworld.xyz/wp-content/uploads/2020/01/PAL1.jpg
+" alt="sony pal"></button> </a></div>
+
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/sonywah/chunks.m3u8">
+
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/d3/92/3d/d3923d43a170f4bffd6d8deb05185fca.jpg
+" alt="sony wah"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/sonysetmax/chunks.m3u8">
+
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://mhdtvworld.xyz/wp-content/uploads/2020/02/MAXSD.jpg
+" alt="sony max"></button> </a></div>
+
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/sonysetmaxhduk/chunks.m3u8">
+
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/b4/1c/19/b41c19c6f3b3c10c92788e3741452458.jpg
+" alt="sony max hd uk"></button> </a></div>
+
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/sonysetmaxhd/chunks.m3u8">
+
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/ce/99/0c/ce990c126f26d930cbda4b3725a86347.jpg
+" alt="sony max hd"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="">
+<a class="channel_box" href="go:shd">
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/ce/99/0c/ce990c126f26d930cbda4b3725a86347.jpg
+" alt="sony max hd"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/sonymax2/chunks.m3u8">
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/4e/69/32/4e693235372eeb44d74dac015ff470fd.jpg
+" alt="sony max 2"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/sonypixhd/chunks.m3u8">
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/bf/86/4c/bf864c3b85f0fa9713a62da399a02cf3.jpg
+" alt="sony pix hd"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv CARTOON"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/sonyyay/chunks.m3u8">
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/originals/3a/5a/f8/3a5af864d0d2ebd321d5b5ad6b47017f.jpg
+" alt="sony yay"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv CARTOON"> 
+<button id="1" name="1" value="">
+	
+	<a class="channel_box" href="go:g">
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/22/73/75/227375e963a227150044b4782a1a7ee6.jpg
+" alt="ghubaare"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/zeetv/chunks.m3u8">
+	
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/d5/af/1c/d5af1ca09d5f14e0ad3e61e5c70b5f87.jpg
+" alt=" ZEE TV"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/zeetvme/chunks.m3u8">
+	
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/72/10/ba/7210baae4daeafd12a42561d13d34afc.jpg
+" alt=" ZEE ME"></button> </a></div>
+
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/zeetvhd/chunks.m3u8">
+	
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/d3/f7/dc/d3f7dc179c2312305bbbb202b1a94eb3.jpg
+" alt=" ZEE TV HD"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/zeetvuk/chunks.m3u8">
+	
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/7d/52/15/7d521591a21b3bbeddac579793772742.jpg
+" alt=" ZEE TV HD UK "></button> </a></div>
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="">
+	<a class="channel_box" href="go:zhdusa">
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/1f/cc/ec/1fccece1891a42076f516bbaadefe390.jpg
+" alt=" ZEE TV HD USA "></button> </a></div>
+
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/zeeanmol/chunks.m3u8">
+	
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/95/c4/ac/95c4ac7a522df440d6afdf8be5153756.jpg
+" alt=" ZEE ANMOL"></button> </a></div>
+
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="">
+	<a class="channel_box" href="go:zea">
+		
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/95/c4/ac/95c4ac7a522df440d6afdf8be5153756.jpg
+" alt=" ZEE ANMOL 2"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/zeeanmolcinema/chunks.m3u8">
+	
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/d9/9c/80/d99c80d9148b7a963474754d4b6aeb3e.jpg
+" alt=" ZEE ANMOL CINEMA "></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/new/zeepunjabi/chunks.m3u8">
+	
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://mhdtvworld.xyz/wp-content/uploads/2021/04/zpunjabi.png
+" alt=" ZEE PUNJAABI"></button> </a></div>
+
+
+
+
+
+
+<div style="float: left;" class="filterDiv MUSIC"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/zingtv/chunks.m3u8">
+	
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/be/00/f5/be00f5a37b393e231b3f34ad534f153b.jpg
+" alt=" ZING "></button> </a></div>
+
+
+
+<div style="float: left;" class="filterDiv MUSIC"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/zinguk/chunks.m3u8">
+	
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/a8/d9/29/a8d929873122404e3cb3ee00b4ec925f.jpg
+" alt=" ZING UK "></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv MUSIC"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/zoomtv/chunks.m3u8">
+	
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/7d/b3/19/7db319b6d3be71f0715304f69a2bd829.jpg" alt=" ZOOM "></button> </a></div>
+
+
+
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/zeebollywood/chunks.m3u8">
+	
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/d2/48/9e/d2489e71e5559ed6d26f9dac264996f8.jpg
+" alt=" ZEE   BOLLYWOOD "></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/zeecinema/chunks.m3u8">
+	
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/c3/50/32/c350323f2bfee496ae664069c2645011.jpg
+" alt=" ZEE CINEMA"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/zeecinemame/chunks.m3u8">
+	<img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/a4/4d/3f/a44d3fa64bb1a0ee11f91e59529d69a8.jpg" alt=" ZEE CINEMA ME"></button> </a></div>
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/zeecinemahduk/chunks.m3u8">
+	
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/00/27/c2/0027c21cfb9865a24fd79bd301e43678.jpg
+" alt=" ZEE CINEMA UK"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/zeecinemahd/chunks.m3u8">
+	
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/7e/b2/de/7eb2de5e7c229ac134e527d88817525e.jpg
+" alt=" ZEE CINEMA HD"></button> </a></div>
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="">
+	
+	<a class="channel_box" href="go:zchd">
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/7e/b2/de/7eb2de5e7c229ac134e527d88817525e.jpg
+" alt=" ZEE CINEMA HD 2"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/zeeaction/chunks.m3u8">
+	
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/dd/9b/2b/dd9b2bf0cbea3c928bee6bbbd6b8e553.jpg
+" alt=" ZEE ACTION"></button> </a></div>
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="">
+	<a class="channel_box" href="go:zeea">
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/dd/9b/2b/dd9b2bf0cbea3c928bee6bbbd6b8e553.jpg
+" alt=" ZEE action"></button> </a></div>
+
+
+
+
+
+
+
+
+<div style="float: left;" class="filterDiv NEWS"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/zeesalaam/chunks.m3u8">
+	
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/02/b6/90/02b6904301f1bae8f04a96b2ce744ff9.jpg
+" alt=" ZEE SALAAM"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv NEWS"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/zeehindustan/chunks.m3u8">
+	
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/1d/26/51/1d265135887803be1114bd4ac7971133.jpg
+" alt=" ZEE HINDUSTAN"></button> </a></div>
+
+<div style="float: left;" class="filterDiv NEWS"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/zeenews/chunks.m3u8">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/be/20/c7/be20c76e8b5e07b912a8cdf014cfbfc6.jpg
+" alt=" ZEE NEWS"></button> </a></div>
+
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/andtv/chunks.m3u8">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/6f/61/aa/6f61aa12c6eefc75c989a26b43b93b0c.jpg
+" alt=" andtv "></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/andtvhd/chunks.m3u8">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/54/81/5b/54815b07160b81c1e02c18eb6b7ca99c.jpg
+" alt="AND TV HD  "></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/andpictures/chunks.m3u8">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/b8/05/e5/b805e5a8dd26b072d8ee3a5db6b87954.jpg
+" alt=" &pictures "></button> </a></div>
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/andpictureshd/chunks.m3u8">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/a2/40/70/a240704057c0619133d6b14d7c03b629.jpg
+" alt=" &pictures hd  "></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv CARTOON"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/pogohindi/chunks.m3u8">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/81/d9/f8/81d9f83b6b25b3522bd04b1dad720a5b.jpg
+" alt="pogo"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv CARTOON"> 
+<button id="1" name="1" value="https://cdn.ta.tapmad.com/taptv/e268c9dd7cc5bc7f13ea96e8ea653b83.sdp/taptv/discoverykide2/chunks.m3u8">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/c8/eb/0e/c8eb0ee5c4e02d633357bef9e07ad6fc.jpg
+" alt="discovery kids"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv CARTOON"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/cartoonnetworkhindi/chunks.m3u8">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/d7/2a/e1/d72ae1e36ef3a4509c1ffe328ce53d75.jpg
+" alt="CN CARTOON NETWORK"></button> </a></div>
+
+<div style="float: left;" class="filterDiv CARTOON"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/disneychannelhindi/chunks.m3u8">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/30/d9/af/30d9af87336e85b87d1a5f808b27f67c.jpg" alt="DISNEY CHANNEL"></button> </a></div>
+
+<div style="float: left;" class="filterDiv CARTOON"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/sonichindi/chunks.m3u8">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/736x/45/8b/91/458b91629db4e3117a71c3893838ce6b.jpg" alt="sonic"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv CARTOON"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/nickjrhindi/chunks.m3u8">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/b7/15/1c/b7151c10133850fe8c9047457ffe1450.jpg" alt="nick jr"></button> </a></div>
+
+
+
+
+
+
+
+<div style="float: left;" class="filterDiv MUSIC"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/e24/chunks.m3u8">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/originals/2b/af/90/2baf905197a24f246d5de5eac46f75ba.jpg
+" alt="E24"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/enter10/chunks.m3u8">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/e7/bb/84/e7bb849ac3e7a80bf557cf12a5c60929.jpg
+" alt="ENTER 10"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv MUSIC"> 
+<button id="1" name="1" value="">
+	
+	<a class="channel_box" href="go:sbox">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/736x/e1/65/6f/e1656fd4bbcf86ab45de4d954f5814cb.jpg
+" alt=" show box "></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv MUSIC"> 
+<button id="1" name="1" value="">
+	
+	<a class="channel_box" href="go:htashan">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/4d/ab/e1/4dabe1f8f0e6906d28a7b6c28001993f.jpg
+" alt="TASHAN HARYANA  "></button> </a></div>
+
+
+
+<div style="float: left;" class="filterDiv MUSIC"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/new/onlymusic/chunks.m3u8">
+	
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://mhdtvworld.xyz/wp-content/uploads/2021/06/images-1-18-1.png
+" alt="ONLY MUSIC"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv MUSIC"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/new/britasia/chunks.m3u8">
+	
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://mhdtvworld.xyz/wp-content/uploads/2021/08/images-1-1-24.png
+" alt="BRIT ASIA"></button> </a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/ddnational/chunks.m3u8">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/d6/a4/0f/d6a40f8104ca8ec9d979fb119cd10f4a.jpg
+" alt=" DD NATIONAL "></button> </a></div>
+
+
+
+
+
+
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="">
+<a class="channel_box" href="go:ddn"> 
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/d6/a4/0f/d6a40f8104ca8ec9d979fb119cd10f4a.jpg
+
+" alt=" dd national 2 "></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="">
+	<a class="channel_box" href="go:ddr">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/736x/f6/0d/a5/f60da58e2cdd1fc523f262805d25d1ee.jpg
+" alt="DD RETRO"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/ddbharati/chunks.m3u8">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/5b/12/56/5b125665ac7a47c78d113f8fa104b438.jpg
+" alt="DD BHARATI"></button> </a></div>
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="">
+	
+	<a class="channel_box" href="go:ddb">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/5b/12/56/5b125665ac7a47c78d113f8fa104b438.jpg
+" alt="DD BHARATI"></button> </a></div>
+
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/new/ddpunjabi/chunks.m3u8">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/7b/f1/03/7bf103215f4c24a31a44dcd16e1e701b.jpg
+" alt="DD PUNJAABI"></button> </a></div>
+
+
+
+
+
+
+
+<div style="float: left;" class="filterDiv REGIONAL"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/ddurdu/chunks.m3u8">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/72/61/53/7261533aca826a773332e13e642444d8.jpg
+" alt=" dd urdu "></button> </a></div>
+
+<div style="float: left;" class="filterDiv REGIONAL"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/ddkisan/chunks.m3u8">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/96/60/f0/9660f0289216b6494ed6bcf54aa71d4f.jpg
+" alt=" dd kisan "></button> </a></div>
+
+<div style="float: left;" class="filterDiv REGIONAL"> 
+<button id="1" name="1" value="">
+	
+	<a class="channel_box" href="go:ddks">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/96/60/f0/9660f0289216b6494ed6bcf54aa71d4f.jpg
+" alt=" dd kisan "></button> </a></div>
+
+   <div style="float: left;" class="filterDiv REGIONAL"> 
+<button id="1" name="1" value="">
+	
+	<a class="channel_box" href="go:ddk">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/92/15/a6/9215a69778cdc39505f69ed5be81aa53.jpg
+" alt=" dd kashir "></button> </a></div>
+   
+   
+   
+   
+
+<div style="float: left;" class="filterDiv NEWS"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/ddnews/chunks.m3u8">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/45/09/10/4509105c26a0ce25d862db115ee5754f.jpg
+" alt="dd news"></button> </a></div>
+
+<div style="float: left;" class="filterDiv NEWS"> 
+<button id="1" name="1" value="">
+	
+	<a class="channel_box" href="go:ddns">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/45/09/10/4509105c26a0ce25d862db115ee5754f.jpg
+" alt="dd news"></button> </a></div>
+
+
+
+
+
+<div style="float: left;" class="filterDiv MUSIC"> 
+<button id="1" name="1" value="">
+	 <a class="channel_box" href="go:20">  <img id="imageField" class="Button border"name="imageField" src="https://i.imgur.com/6rKINlh.jpg " alt=" shemro music"></button> </a></div>
+
+<div style="float: left;" class="filterDiv MUSIC"> 
+<button id="1" name="1" value="">
+	 <a class="channel_box" href="go:qindia">  <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/0b/42/fa/0b42fa90aefe06843ff8fab518f1900b.jpg " alt="the q india"> </a></div>
+
+
+<div style="float: left;" class="filterDiv MUSIC"> 
+<button id="1" name="1" value="">
+	 <a class="channel_box" href="go:ptcp">  <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/236x/fc/62/9e/fc629ef41d841c95de580d9bd6e2e3b9.jpg " alt="ptc punjabi"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv MUSIC"> 
+<button id="1" name="1" value="">
+	 <a class="channel_box" href="go:ptcgold">  <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/236x/6f/da/44/6fda4477631988636c746465f35aa623.jpg " alt="ptc gold"></button> </a></div>
+   
+   
+   
+<div style="float: left;" class="filterDiv MUSIC"> 
+<button id="1" name="1" value="">
+	 <a class="channel_box" href="go:ptcdhol">  <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/236x/b9/39/c1/b939c100e985a0cae3673fd6144a5e08.jpg " alt="ptc dhol"></button> </a></div>
+
+
+
+<div style="float: left;" class="filterDiv MUSIC"> 
+<button id="1" name="1" value="">
+	 <a class="channel_box" href="go:ptcmusic">  <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/236x/b7/37/c0/b737c0509001e340d442cd7fec548ab5.jpg " alt="ptc music"></button> </a></div>
+  
+  <div style="float: left;" class="filterDiv MUSIC"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/new/ptcchakde/playlist.m3u8">
+	<img id="imageField" class="Button border"name="imageField" src="https://mhdtvworld.xyz/wp-content/uploads/2021/07/images-1-1-2-1.png " alt="ptc chadke"></button> </a></div>
+  
+  
+  
+  
+  
+  
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="">
+	 <a class="channel_box" href="go:utvm">  <img id="imageField" class="Button border"name="imageField" src="
+https://i.pinimg.com/236x/b4/fe/fb/b4fefbbbf7641852c92d9c6cf3e3f4e5.jpg" alt="UTV MOVIES "></button> </a></div>
+
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="">
+	
+<a class="channel_box" href="go:utvhd">
+ <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/c7/59/ad/c759ad241b8493884e4190fc18b208fc.jpg
+" alt="UTV ACTION"></button> </a></div>
+
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="">
+	 <a class="channel_box" href="go:abzym">  <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/236x/a4/f6/17/a4f6172c957d1111ff0c67b526788f9a.jpg
+" alt="ABZY MOVIES "></button> </a></div>
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="">
+	 <a class="channel_box" href="go:abzyd">  <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/236x/cc/6e/d2/cc6ed26a75571c47f6d69cb0e6e4bd9d.jpg
+" alt="ABZY DHARAK"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="">
+	 <a class="channel_box" href="go:abzyc">  <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/236x/88/c3/b2/88c3b23a6f05f7537d73873bc93b9907.jpg
+" alt="ABZY COOL"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="">
+	 <a class="channel_box" href="go:anjan">  <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/3a/f2/78/3af278bec589999ed1d01819fe693db2.jpg" alt=" Anjan tv "></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="">
+	 <a class="channel_box" href="go:bhajpori"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/b4/37/8b/b4378bfe77f0e364676a9302e7387e9a.jpg " alt="BHAJPORI CINEMA "></button> </a></div>
+
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="">
+	 <a class="channel_box" href="go:bflix"> <img id="imageField" class="Button border"name="imageField" src=" https://i.pinimg.com/236x/f6/23/40/f62340c487d4fe0011447c5339dd8a5e.jpg " alt=" BFLIX "></button> </a></div>
+
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/mahamovies/chunks.m3u8">
+	 <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/236x/99/fd/7f/99fd7f02e927d6460096e4cfc9f480e6.jpg" alt=" Maha movies "></button> </a></div>
+    
+    <div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="">
+	<a class="channel_box" href="go:maham">
+	 <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/236x/99/fd/7f/99fd7f02e927d6460096e4cfc9f480e6.jpg" alt=" Maha movies "></button> </a></div>
+    
+    
+    
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="">
+	 <a class="channel_box" href="go:wowcinema"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/0f/6f/a8/0f6fa85274e7fb26feb82dfdeae17685.jpg " alt=" Wow Cinema "></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/wowcinema/chunks.m3u8">
+	 <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/0f/6f/a8/0f6fa85274e7fb26feb82dfdeae17685.jpg " alt=" Wow Cinema 2"></button> </a></div>
+
+    
+    <div style="float: left;" class="filterDiv ENTERTAINMENT">
+    	
+    <button id="1" name="1" value="">
+<a class="channel_box" href="go:mano"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/ad/24/6e/ad246e72f202f0317f9763b6a6fdb484.jpg " alt=" Manoranjan TV  "></button> </a></div>
+
+
+
+<div style="float: left;" class="filterDiv MOVIE">
+	<button id="1" name="1" value="">
+	
+<a class="channel_box" href="go:mm"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/4b/2a/6a/4b2a6a9e090411d5a56b12a578d295be.jpg" alt=" manoranjan movie "></button> </a></div>
+       
+    
+    
+<div style="float: left;" class="filterDiv MOVIE">
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/b4umovies/chunks.m3u8">
+ <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/236x/47/71/93/47719319bedbed82e0a3bea585dadc03.jpg" alt="B4u movies"></button> </a></div>
+   
+   
+   <div style="float: left;" class="filterDiv MUSIC">
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/b4umusic/chunks.m3u8">
+ <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/236x/06/18/fb/0618fbe48072f60a03013860cb84178f.jpg" alt="B4u music"></button> </a></div>
+   
+   
+
+<div style="float: left;" class="filterDiv MOVIE">
+<button id="1" name="1" value="">
+<a class="channel_box" href="go:b4uk"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/236x/e5/9d/c9/e59dc9b971cc0b0229c13c5ee2389181.jpg " alt="B4u kadak"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv MUSIC"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/9xm/chunks.m3u8">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/15/d6/18/15d6187db3770dc92367d0e656909cc7.jpg
+" alt="9XM"></button> </a></div>
+
+
+
+
+
+<div style="float: left;" class="filterDiv MUSIC"> 
+<button id="1" name="1" value="">
+	<a class="channel_box" href="go:9xm">
+	 <img id="imageField" class="Button border"  name="imageField" src="
+https://i.pinimg.com/236x/15/d6/18/15d6187db3770dc92367d0e656909cc7.jpg
+" alt="9XM  "></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv MUSIC">
+	<button id="1" name="1" value="">
+<a class="channel_box" href="go:9xmjalwa"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/236x/4f/e6/07/4fe6072f7f118ee2e0cbef3856c19d57.jpg " alt="9x jalwa"></button> </a></div> 
+
+
+<div style="float: left;" class="filterDiv MUSIC"> 
+<button id="1" name="1" value=""> 
+	<a class="channel_box" href="go:9xtashan">
+	 <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/5a/07/a7/5a07a71a90ca22ec0824104b0a263793.jpg " alt="9x Tashan"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv MUSIC"> 
+<button id="1" name="1" value="">
+	 <a class="channel_box" href="go:9xjhakaas"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/3d/4f/16/3d4f16c61145be27db056195ca23f74d.jpg " alt="9xjhakaas"></button> </a></div>
+
+
+
+
+<div style="float: left;" class="filterDiv MUSIC"> 
+<button id="1" name="1" value="">
+	 <a class="channel_box" href="go:musicind"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/236x/69/98/a4/6998a4f2067b748ac4f5862181ae9800.jpg " alt="MUSIC INDIA"></button> </a></div>
+
+
+
+
+
+
+<div style="float: left;" class="filterDiv MUSIC"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/mastitv/chunks.m3u8">
+	 <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/f8/06/09/f80609605d2dca5930063e5929cd4d73.jpg " alt="masti"></button> </a></div>
+
+
+
+
+
+
+
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/dabangtv/chunks.m3u8">
+	 <img id="imageField" class="Button border"name="imageField" src="
+https://i.pinimg.com/236x/63/88/ed/6388edd0389aa3ce0dd7b9985d879728.jpg " alt="DABANGG">
+</button> </a></div>
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/dhamaaltv/chunks.m3u8">
+	 <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/236x/d3/ef/26/d3ef26caaf0f145144d121f2fea9c487.jpg
+ " alt="DAMAAL"></button> </a></div>
+
+
+
+
+
+<div style="float: left;" class="filterDiv ENTERTAINMENT"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/dillagitv/chunks.m3u8">
+	 <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/236x/bc/49/81/bc498191d6003a1c222c9b7f2965e8b7.jpg
+ " alt="DILLAGI"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv MUSIC"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/mtvindia/chunks.m3u8">
+	 <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/236x/93/26/59/932659b531a3c984f605f59820d7972e.jpg " alt="MTV INDIA"></button> </a></div>
+
+<div style="float: left;" class="filterDiv MUSIC"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/mtvbeats/chunks.m3u8">
+	 <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/236x/1d/9e/c6/1d9ec638c1e7f0a14a7a9b18ba301feb.jpg " alt="MTV BEATS"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv MUSIC"> 
+<button id="1" name="1" value="">
+	 <a class="channel_box" href="go:dilse"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/236x/5b/ca/48/5bca48c42cd37509bfcd9785f36448b6.jpg " alt="Dil se Music "></button> </a></div>
+
+<div style="float: left;" class="filterDiv MUSIC"> 
+<button id="1" name="1" value="">
+	 <a class="channel_box" href="go:artist"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/da/26/61/da266151d530ba957aa3af448f142ed8.jpg " alt="Bollywood artist Music "></button> </a></div>
+
+<div style="float: left;" class="filterDiv MUSIC"> 
+<button id="1" name="1" value="">
+	 <a class="channel_box" href="go:ilove"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/236x/33/5a/f3/335af346b562d552d2101d226d93a14d.jpg " alt="I LOVE MUSIC"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv REGIONAL"> 
+<button id="1" name="1" value="">
+	 <a class="channel_box" href="go:pitara"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/e4/19/03/e41903498247461d6f9dde0e6e7698ff.jpg " alt="pitaara "></button> </a></div>
+
+<div style="float: left;" class="filterDiv MOVIE"> 
+<button id="1" name="1" value="">
+	 <a class="channel_box" href="go:joo"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/3c/f2/72/3cf272247aeb46aa550c086fbc432079.jpg " alt=" joo music "></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv REGIONAL"> 
+<button id="1" name="1" value="">
+	 <a class="channel_box" href="go:f"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/04/ec/5c/04ec5ccc79d50ef207b9ca4f94c17622.jpg " alt=" fateh"></button> </a> </div>
+
+
+<div style="float: left;" class="filterDiv REGIONAL"> 
+<button id="1" name="1" value="">
+	 <a class="channel_box" href="go:mh1"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/01/0b/71/010b71b8c05ae4d8f64bd5c6ac15373c.jpg " alt="MH1"></button> </a> </div>
+
+
+
+<div style="float: left;" class="filterDiv REGIONAL"> 
+<button id="1" name="1" value="">
+	 <a class="channel_box" href="go:ndtvind"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/f7/73/a4/f773a4ae3c120eca9d58894cf81d3186.jpg " alt=" MH1 PRIME "></button> </a> </div>
+
+
+<div style="float: left;" class="filterDiv MUSIC"> 
+<button id="1" name="1" value="">
+	 <a class="channel_box" href="go:boogle"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/1e/c7/c0/1ec7c068b8ab72b6e20ad4e698ee410a.jpg " alt="boogle Bollywood"></button> </a></div>
+
+<div style="float: left;" class="filterDiv SCIENCE">
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/uk/discoverysci/chunks.m3u8"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/236x/97/fe/be/97febed8af524ec27a4331e8a32dbefb.jpg " alt=" Discovery Science"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv SCIENCE">
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/discoveryhindi/chunks.m3u8"> 
+
+<img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/f4/af/6c/f4af6cffde3b16add99bd0ec2be6ae34.jpg " alt=" Discovery hindi"></button> </a></div>
+
+
+
+
+
+
+
+
+
+
+
+<div style="float: left;" class="filterDiv SCIENCE">
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/animalplanethindi/chunks.m3u8"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/236x/91/e3/63/91e363220f11883a8e74c78ae475fcde.jpg " alt=" ANIMAL PLANET hindi"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv SCIENCE">
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind2/natgeowild/chunks.m3u8"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/12/b3/db/12b3db618c36f40cdd9e6dfb75fb9339.jpg " alt=" Nat go wild "></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv SCIENCE">
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/uk/natgeochannelhd/chunks.m3u8"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/236x/e6/8f/b5/e68fb5946ba49a4efb3cdb470e538267.jpg " alt=" National geography "></button> </a></div>
+
+<div style="float: left;" class="filterDiv SCIENCE"> 
+<button id="1" name="1" value="http://n1.mtfxg.xyz:8081/ind1/sonyearthhd/playlist.m3u8">
+ <img id="imageField" class="Button border"  name="imageField" src="https://i.pinimg.com/236x/5f/ad/ae/5fadae9d2cd4de4ad88342c4aa885b95.jpg" alt="sony bbc earth"></button>  </div>
+
+
+
+
+
+
+
+<div style="float: left;" class="filterDiv ISLAMIC">
+<button id="1" name="1" value="">
+
+ <a class="channel_box" href="go:channel"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/02/d3/b2/02d3b20a3bb7789e7c94af33bfc36797.jpg " alt=" Channel Win "></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv NEWS">
+<button id="1" name="1" value="">
+<a class="channel_box" href="go:abpn"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/e9/d9/62/e9d96249f6f678c186e3aa78facad857.jpg " alt=" ABP news "></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv NEWS">
+<button id="1" name="1" value="">
+<a class="channel_box" href="go:tv"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/dd/5d/f8/dd5df880c0e658b0a74a25d54242b353.jpg " alt="india tv"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv NEWS">
+<button id="1" name="1" value="">
+<a class="channel_box" href="go:a1ind"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/236x/98/b4/f6/98b4f676385f18c1f3c5402a74b602fd.jpg " alt="A1TV IND"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv NEWS">
+<button id="1" name="1" value="">
+ <a class="channel_box" href="go:ndtvin"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/b2/c7/83/b2c783a6f5aacaf62c06f029ed943e81.jpg " alt="NDTV INDIA"></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv NEWS">
+<button id="1" name="1" value="">
+ <a class="channel_box" href="go:aj"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/ef/96/ed/ef96edd5acfb7cdc769698dff80f4fec.jpg" alt=" Aajtakk "></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv NEWS">
+<button id="1" name="1" value="">
+ <a class="channel_box" href="go:ajhd"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/7e/56/37/7e563721d97adfb1b551b2a362373c62.jpg" alt=" Aajtakk hd"></button> </a></div>
+
+
+
+<div style="float: left;" class="filterDiv NEWS">
+	<button id="1" name="1" value="">
+<a class="channel_box" href="go:samay"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/6f/d0/ce/6fd0ce9a109f38455b8b46dafe29b5e5.jpg" alt=" Samay "></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv NEWS">
+	<button id="1" name="1" value="">
+<a class="channel_box" href="go:aalami"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/03/64/2a/03642ab20609760ed69d3b021e31d34a.jpg" alt=" Samay Aalami  "></button> </a></div>
+
+
+
+
+<div style="float: left;" class="filterDiv NEWS">
+<button id="1" name="1" value="">
+<a class="channel_box" href="go:samayup"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/9d/a3/2a/9da32a0235f30cbb3812bb55c780bca3.jpg" alt=" Samay up  "></button> </a></div>
+
+
+<div style="float: left;" class="filterDiv NEWS">
+	<button id="1" name="1" value="">
+<a class="channel_box" href="go:rajisthan"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/15/de/78/15de78cc0d54bddcb72c2845bddd03d1.jpg" alt=" Samay Rajisthan  "></button> </a></div>
+
+<div style="float: left;" class="filterDiv NEWS">
+	<button id="1" name="1" value="">
+<a class="channel_box" href="go:bihar"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/12/23/34/122334c41af27498fd5e3957091740db.jpg" alt=" Samay Bihar  "></button> </a></div>
+
+<div style="float: left;" class="filterDiv NEWS">
+	
+	<button id="1" name="1" value="">
+<a class="channel_box" href="go:news24"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/5c/7e/ac/5c7eaceea73aa9a2546834bf625a977e.jpg " alt=" news 24 "></button> </a></div>
+
+
+
+<div style="float: left;" class="filterDiv NEWS">
+	<button id="1" name="1" value="">
+<a class="channel_box" href="go:tv9"> <img id="imageField" class="Button border"name="imageField" src="https://i.pinimg.com/originals/5e/7a/03/5e7a03fd4ab3b31918cce9f19386026e.jpg " alt=" TV9 BHARATVARSH "></button> </a></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div  class="Arain" align="center">
+        
+
+
+<hr>
+<font size=+2">
+<span><p style="color:#016795";>©Copyright 2022 LIVE-TV </span>
+<span>By ❤𝒮𝓎𝑒𝒹 𝑀𝓊𝓏𝒶𝓂𝓂𝒾𝓁 𝒮𝒽𝒶𝒽❤</p> </span>
+
+
+</div>
+<hr>    
+
+
+<body style ="background: url('https://i.pinimg.com/originals/2b/78/42/2b784258f359a45dec38e63b82059c10.jpg'); background-size: 100%  100%">
+
+
+
+
+
+             
+
+
+
+
+   
+
+<p style="display: none" id="adjust">0</p>
+<div style="font-weight: bold; border:border-radius: 100%; color: gold; font-size: 25px; position: fixed; top: 238px;margin-left: -8px;margin-right: 0px;">
+
+
+
+
+
+ 
+  
+      <div style="position: fixed; top: 0px; width: 100%">
+        <center>
+          <video class="afterglow" poster="https://i.pinimg.com/736x/f1/3a/82/f13a827c9c9677f9cc5e37fe1108d294.jpg" id='videoplayer' preload="none" title='Wasi TV' data-skin="light" width='16' height='9' data-autoresize="fit" src="">
+<source src="#" type="video/mp4">
+</video>
+          <div style="background-color:Black ">
+            <center> <div style="background-color:rgb(20,20,20);"> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+      function disableSelection(e) {
+        if (typeof e.onselectstart != "undefined") e.onselectstart = function() {
+          return false
+        };
+        else if (typeof e.style.MozUserSelect != "undefined") e.style.MozUserSelect = "none";
+        else e.onmousedown = function() {
+          return false
+        };
+        e.style.cursor = "default"
+      }
+      window.onload = function() {
+        disableSelection(document.body)
+      }
+    </script>
+    <script type="text/javascript">
+      document.oncontextmenu = function(e) {
+        var t = e || window.event;
+        var n = t.target || t.srcElement;
+        if (n.nodeName != "A") return false
+      };
+      document.ondragstart = function() {
+        return false
+      };
+    </script>
+    <!-- Java Script by Wasi TV App -->
+  </div>
+  </div>
+</body>
+<script>
+var vid = afterglow.getPlayer('videoplayer');
+	     $("button").click(function() {
+    var slug = $(this).val();
+
+                $.ajax({
+
+                type: "POST",
+
+                url: "https://corsany-where.herokuapp.com/http://delta.rapidstreams.io/gt.rstrm/" ,
+
+                data:"",
+
+                success: function(result){
+                
+
+afterglow.getPlayer('videoplayer').pause().currentTime(0).src(slug+result).play();
+
+}
+});
+ });
+ </script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="display: none" id="adjust">0</p>
+
+
+<div style="font-weight: bold; border:border-radius: 100%; color: gold; font-size: 25px; position: fixed; top: 203px;margin-left: -10px;margin-right: 0px;">
+
+
+
+
+
+
+<div
+ align="center" margin="20Px"
+Width="90%"  id="myBtnContainer">
+
+
+  <div style="background: url('https://i.pinimg.com/originals/2b/78/42/2b784258f359a45dec38e63b82059c10.jpg'); background-size: 100%  100%">
+
+
+ <button Class="myButton" onclick="filterSelection('all')"> All</button>
+  <button 
+Class="myButton"
+  onclick="filterSelection('ISLAMIC')"> Islamic</button>
+  <button 
+Class="myButton"
+  onclick="filterSelection('NEWS')"> News</button>
+  <button 
+Class="myButton"
+  onclick="filterSelection('ENTERTAINMENT')"> Entertainment</button>
+  <button  
+Class="myButton"
+  onclick="filterSelection('SCIENCE')"> Science</button>
+  
+  <button 
+Class="myButton"
+  onclick="filterSelection('CARTOON')">Cartoon</button>
+  
+  
+  <button 
+Class="myButton"
+  onclick="filterSelection('MOVIE')">Movie</button>
+  
+  
+  
+  <button  
+Class="myButton"
+  onclick="filterSelection('MUSIC')">Music</button>
+  
+<button  
+Class="myButton"
+  onclick="filterSelection('REGIONAL')">Regional</button>
+
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+filterSelection("all")
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("filterDiv");
+  if (c == "all") c = "";
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass(x[i], "show");
+    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+  }
+}
+
+function w3AddClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+  }
+}
+
+function w3RemoveClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);     
+    }
+  }
+  element.className = arr1.join(" ");
+}
+
+// Add active class to the current button (highlight it)
+var btnContainer = document.getElementById("myBtnContainer");
+var btns = btnContainer.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function(){
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+</script>
